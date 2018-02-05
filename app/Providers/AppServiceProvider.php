@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use League\Fractal\Manager;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
+        $this->app['Dingo\Api\Transformer\Factory']->setAdapter(function ($app) {
+            $fractal = new Manager;
+            $fractal->setSerializer(new EmberSerializer());
+            return new Fractal($fractal, 'include', ',');
+        });
     }
 
     /**
@@ -23,6 +29,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 }
