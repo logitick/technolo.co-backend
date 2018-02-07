@@ -31,6 +31,10 @@ class Article
         $this->image = $image;
     }
 
+    public function getId() {
+        return str_replace(' ', '-', strtolower($this->title));
+    }
+
 
     /**
      * @return mixed

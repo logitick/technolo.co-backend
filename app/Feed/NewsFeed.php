@@ -3,5 +3,8 @@ namespace App\Feed;
 
 interface NewsFeed
 {
-    public function getTopItems() : Article;
+    /**
+     * @return Article[]
+     */
+    public function getTopItems() : array;
 }
